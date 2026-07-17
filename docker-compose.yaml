@@ -20,10 +20,15 @@ services:
       timeout: 3s
       retries: 5
 
-  portal:
-    image: ebvn/bookmark-app-portal:mono
-    container_name: portal
+
+  frontend:
+    image: duydoanvu1709/snappy-fe:latest
+    container_name: frontend
     restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 60M
     networks:
       - app-network
 
@@ -38,6 +43,8 @@ services:
     depends_on:
       bookmark-service:
         condition: service_healthy
+      frontend:
+        condition: service_started
     networks:
       - app-network
 
