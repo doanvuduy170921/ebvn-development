@@ -48,8 +48,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      # Mount đè cấu hình đã sửa vào đúng file mặc định của container
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
       # Nginx tổng chỉ khởi động khi cả FE đã UP và Go API đã vượt qua kiểm tra Healthcheck
       bookmark-service:
